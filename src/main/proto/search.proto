@@ -1,14 +1,13 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 option java_multiple_files = true;
 package tips.munity.proto.search;
 
 
-message CityEnvelope {
-    repeated City cities = 1;
+enum SearchType {
+    START_WITH = 0;
 }
+
 
 message City {
     int64 id = 1;
@@ -23,8 +22,9 @@ message Country {
 
 message CityFilter {
     string name = 1;
+    SearchType searchType = 2;
 }
 
 service SearchService {
-    rpc searchCity (CityFilter) returns (CityEnvelope);
+    rpc searchCity (CityFilter) returns (stream City);
 }
