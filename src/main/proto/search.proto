@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+package tips.munity.proto.search;
+
+message City {
+    int64 id = 1;
+    string name = 2;
+    Country country = 3;
+}
+
+message Country {
+    int64 id = 1;
+    string name = 2;
+}
+
+message cityFilter {
+    string name = 1;
+}
+
+service BetsService {
+    rpc searchCity (cityFilter) returns (City);
+}

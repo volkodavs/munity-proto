@@ -1,0 +1,20 @@
+*.class
+
+
+# Idea
+.idea/
+*.iml
+
+# MacOS
+.DS_Store
+
+# Gradle
+.gradle/
+build/
+classes/
+out/
+
+data/
+target/
+
+
