@@ -25,6 +25,6 @@ message CityFilter {
     string name = 1;
 }
 
-service BetsService {
+service SearchService {
     rpc searchCity (CityFilter) returns (CityEnvelope);
 }
