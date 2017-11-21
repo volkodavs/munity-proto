@@ -3,11 +3,17 @@ syntax = "proto3";
 option java_multiple_files = true;
 package tips.munity.proto.search;
 
+import "google/protobuf/timestamp.proto";
 
 enum SearchType {
     START_WITH = 0;
 }
-
+enum EventSortType {
+    POPULARITY = 0;
+    TIME = 1;
+    DISTANCE = 2;
+    VENUE = 3;
+}
 
 message City {
     int64 id = 1;
@@ -25,6 +31,61 @@ message CityFilter {
     SearchType searchType = 2;
 }
 
+
+message Event {
+    int64 id = 1;
+    string name = 2;
+    string coverPicture = 3;
+    string profilePicture = 4;
+    string description = 5;
+    double distance = 6;
+    google.protobuf.Timestamp startTime = 7;
+    google.protobuf.Timestamp endTime = 8;
+    int32 timeFromNow = 9;
+    string category = 10;
+    Stats stats = 11;
+    Venue venue = 12;
+}
+
+message Stats {
+    int32 attending = 1;
+    int32 declined = 2;
+    int32 maybe = 3;
+    int32 noreply = 4;
+}
+
+message Venue {
+    int64 id = 1;
+    string name = 2;
+    string about = 3;
+    repeated string emails = 4;
+    string coverPicture = 5;
+    string profilePicture = 6;
+    string category = 7;
+    repeated string categoryList = 8;
+    Location location = 10;
+}
+
+message Location {
+    string city = 1;
+    string country = 2;
+    double latitude = 3;
+    double longitude = 4;
+    string street = 5;
+}
+
+message EventFilter {
+    double latitude = 1;
+    double longitude = 2;
+    int32 distance = 3;
+    EventSortType sortType = 4;
+    google.protobuf.Timestamp since = 5;
+    google.protobuf.Timestamp until = 6;
+}
+
+
 service SearchService {
     rpc searchCity (CityFilter) returns (stream City);
+    rpc searchEvents (EventFilter) returns (stream Event);
 }
+
