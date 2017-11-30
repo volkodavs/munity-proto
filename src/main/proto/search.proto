@@ -38,13 +38,11 @@ message Event {
     string coverPicture = 3;
     string profilePicture = 4;
     string description = 5;
-    double distance = 6;
-    google.protobuf.Timestamp startTime = 7;
-    google.protobuf.Timestamp endTime = 8;
-    int32 timeFromNow = 9;
-    string category = 10;
-    Stats stats = 11;
-    Venue venue = 12;
+    google.protobuf.Timestamp startTime = 6;
+    google.protobuf.Timestamp endTime = 7;
+    string category = 8;
+    Stats stats = 9;
+    Venue venue = 10;
 }
 
 message Stats {
@@ -75,12 +73,13 @@ message Location {
 }
 
 message EventFilter {
-    double latitude = 1;
-    double longitude = 2;
-    int32 distance = 3;
-    EventSortType sortType = 4;
-    google.protobuf.Timestamp since = 5;
-    google.protobuf.Timestamp until = 6;
+    int64 cityId= 1;
+    double latitude = 2;
+    double longitude = 3;
+    int32 distance = 4;
+    EventSortType sortType = 5;
+    google.protobuf.Timestamp since = 6;
+    google.protobuf.Timestamp until = 7;
 }
 
 
